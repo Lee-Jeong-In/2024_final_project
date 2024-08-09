@@ -1,0 +1,151 @@
+name: flutter_app
+description: "A new Flutter project."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  google_fonts: ^6.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+  flutter_svg: ^2.0.10+1
+
+flutter:
+  uses-material-design: true
+  assets:
+  - assets/vectors/wifi_1_x2.svg
+  - assets/vectors/union_1_x2.svg
+  - assets/vectors/battery_12_x2.svg
+  - assets/vectors/icon_mobile_signal_15_x2.svg
+  - assets/vectors/notch_x2.svg
+  - assets/vectors/business_profession_home_office_workspace_home_office_work_business_remote_working_x2.svg
+  - assets/vectors/ellipse_1145_x2.svg
+  - assets/vectors/icon_mobile_signal_4_x2.svg
+  - assets/vectors/battery_3_x2.svg
+  - assets/vectors/wifi_4_x2.svg
+  - assets/vectors/ellipse_11441_x2.svg
+  - assets/vectors/image_x2.svg
+  - assets/vectors/notch_7_x2.svg
+  - assets/vectors/polygon_13_x2.svg
+  - assets/vectors/polygon_11_x2.svg
+  - assets/vectors/icon_mobile_signal_13_x2.svg
+  - assets/vectors/group_26_x2.svg
+  - assets/vectors/group_22_x2.svg
+  - assets/vectors/battery_13_x2.svg
+  - assets/vectors/group_24_x2.svg
+  - assets/vectors/group_221_x2.svg
+  - assets/vectors/sf_symbol_arrow_triangle_turn_up_right_circle_fill_2_x2.svg
+  - assets/vectors/notch_2_x2.svg
+  - assets/vectors/wifi_11_x2.svg
+  - assets/images/image_2.jpeg
+  - assets/vectors/ellipse_11487_x2.svg
+  - assets/vectors/rectangle_17112_x2.svg
+  - assets/vectors/group_25_x2.svg
+  - assets/vectors/ellipse_11484_x2.svg
+  - assets/vectors/ellipse_11486_x2.svg
+  - assets/vectors/polygon_18_x2.svg
+  - assets/vectors/icon_mobile_signal_8_x2.svg
+  - assets/vectors/ellipse_11451_x2.svg
+  - assets/vectors/notch_5_x2.svg
+  - assets/vectors/rectangle_17114_x2.svg
+  - assets/vectors/battery_14_x2.svg
+  - assets/vectors/business_profession_home_office_workspace_home_office_work_business_remote_working_1_x2.svg
+  - assets/vectors/ellipse_1147_x2.svg
+  - assets/vectors/wifi_3_x2.svg
+  - assets/vectors/battery_1_x2.svg
+  - assets/vectors/notch_12_x2.svg
+  - assets/vectors/icon_mobile_signal_6_x2.svg
+  - assets/vectors/wifi_15_x2.svg
+  - assets/vectors/group_22_x2.svg
+  - assets/vectors/rectangle_17117_x2.svg
+  - assets/vectors/rectangle_17113_x2.svg
+  - assets/vectors/rectangle_17115_x2.svg
+  - assets/vectors/group_21_x2.svg
+  - assets/vectors/polygon_16_x2.svg
+  - assets/vectors/group_23_x2.svg
+  - assets/vectors/rectangle_17116_x2.svg
+  - assets/vectors/notch_9_x2.svg
+  - assets/vectors/icon_mobile_signal_3_x2.svg
+  - assets/vectors/battery_5_x2.svg
+  - assets/vectors/wifi_13_x2.svg
+  - assets/vectors/rectangle_15_x2.svg
+  - assets/images/qr_1.png
+  - assets/vectors/container_x2.svg
+  - assets/vectors/battery_7_x2.svg
+  - assets/vectors/icon_mobile_signal_11_x2.svg
+  - assets/vectors/group_24_x2.svg
+  - assets/vectors/notch_8_x2.svg
+  - assets/vectors/rectangle_17111_x2.svg
+  - assets/vectors/wifi_12_x2.svg
+  - assets/vectors/group_2_x2.svg
+  - assets/vectors/rectangle_1711_x2.svg
+  - assets/vectors/group_17_x2.svg
+  - assets/vectors/polygon_19_x2.svg
+  - assets/vectors/polygon_15_x2.svg
+  - assets/vectors/polygon_14_x2.svg
+  - assets/vectors/rectangle_16_x2.svg
+  - assets/vectors/battery_4_x2.svg
+  - assets/vectors/wifi_7_x2.svg
+  - assets/vectors/notch_15_x2.svg
+  - assets/vectors/icon_mobile_signal_7_x2.svg
+  - assets/vectors/rectangle_8_x2.svg
+  - assets/vectors/sf_symbol_arrow_triangle_turn_up_right_circle_fill_4_x2.svg
+  - assets/vectors/rectangle_10_x2.svg
+  - assets/vectors/sf_symbol_arrow_triangle_turn_up_right_circle_fill_1_x2.svg
+  - assets/vectors/wifi_x2.svg
+  - assets/vectors/sf_symbol_arrow_triangle_turn_up_right_circle_fill_x2.svg
+  - assets/vectors/rectangle_9_x2.svg
+  - assets/vectors/rectangle_7_x2.svg
+  - assets/vectors/icon_mobile_signal_9_x2.svg
+  - assets/vectors/notch_4_x2.svg
+  - assets/vectors/sf_symbol_arrow_triangle_turn_up_right_circle_fill_3_x2.svg
+  - assets/vectors/battery_11_x2.svg
+  - assets/vectors/vector_x2.svg
+  - assets/vectors/icon_mobile_signal_14_x2.svg
+  - assets/vectors/notch_3_x2.svg
+  - assets/vectors/battery_6_x2.svg
+  - assets/vectors/wifi_14_x2.svg
+  - assets/vectors/icon_mobile_signal_1_x2.svg
+  - assets/vectors/ellipse_1144_x2.svg
+  - assets/vectors/battery_15_x2.svg
+  - assets/vectors/wifi_5_x2.svg
+  - assets/vectors/notch_6_x2.svg
+  - assets/vectors/image_1_x2.svg
+  - assets/vectors/rectangle_1724_x2.svg
+  - assets/vectors/notch_14_x2.svg
+  - assets/vectors/wifi_9_x2.svg
+  - assets/vectors/battery_8_x2.svg
+  - assets/vectors/icon_mobile_signal_5_x2.svg
+  - assets/vectors/ellipse_11481_x2.svg
+  - assets/vectors/battery_9_x2.svg
+  - assets/vectors/ellipse_11482_x2.svg
+  - assets/vectors/ellipse_1148_x2.svg
+  - assets/vectors/icon_mobile_signal_12_x2.svg
+  - assets/vectors/ellipse_11485_x2.svg
+  - assets/vectors/ellipse_11483_x2.svg
+  - assets/vectors/ellipse_11489_x2.svg
+  - assets/vectors/notch_13_x2.svg
+  - assets/vectors/wifi_8_x2.svg
+  - assets/vectors/wifi_2_x2.svg
+  - assets/vectors/icon_mobile_signal_10_x2.svg
+  - assets/vectors/polygon_17_x2.svg
+  - assets/vectors/battery_10_x2.svg
+  - assets/vectors/polygon_1_x2.svg
+  - assets/vectors/notch_11_x2.svg
+  - assets/vectors/polygon_12_x2.svg
+  - assets/vectors/send_email_mail_send_email_paper_airplane_x2.svg
+  - assets/vectors/battery_x2.svg
+  - assets/vectors/union_11_x2.svg
+  - assets/vectors/notch_10_x2.svg
+  - assets/vectors/wifi_10_x2.svg
+  - assets/vectors/icon_mobile_signal_2_x2.svg
+
