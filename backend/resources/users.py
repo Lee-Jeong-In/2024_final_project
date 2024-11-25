@@ -50,9 +50,9 @@ class Users(Resource):
     # 사용자 추가 (POST /users)
     #@app.route('/users', methods=['POST'])
     def post(self):
- 
+
         data = request.json
-        print("Received data:", data)  # 디버깅: 수신된 데이터 출력 
+        print("Received data:", data)  # 디버깅: 수신된 데이터 출력
 
         student_id = data.get('student_id')
         role = data.get('role')
@@ -60,7 +60,7 @@ class Users(Resource):
         name = data.get('name')
         photo_url = data.get('photo_url')
         professor = data.get('professor')
-    
+
         print("Student ID:", student_id)  # 디버깅: 필드 값 확인
         if not all([student_id, role, email, name]): # 네 개 다 값 존재하면 True, 하나라도 없으면 False
             return {"error": "Missing required fields"}, 400  # dict로 반환
@@ -86,4 +86,3 @@ class Users(Resource):
 
 # Users 클래스를 Blueprint에 등록
 api.add_resource(Users, '', '/<int:user_id>')
-

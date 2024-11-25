@@ -88,7 +88,7 @@ class SignInScreen extends StatelessWidget {
                       maintainState: true,
                       visible: false,
                       child:
-                          SvgPicture.asset("assets/image/ic_logo_kakao.svg")),
+                      SvgPicture.asset("assets/image/ic_logo_kakao.svg")),
                 ],
               ),
             ),
@@ -110,7 +110,7 @@ class SignInScreen extends StatelessWidget {
                       maintainState: true,
                       visible: false,
                       child:
-                          SvgPicture.asset("assets/image/ic_logo_google.svg")),
+                      SvgPicture.asset("assets/image/ic_logo_google.svg")),
                 ],
               ),
             ),
@@ -135,8 +135,7 @@ class SignInScreen extends StatelessWidget {
 }
 
 class SignInController extends GetxController {
-  final ApiService apiService = ApiService(); // (11.02) ApiService 인스턴스 추가
-
+  final ApiService apiService = ApiService();
   late TextEditingController idTextController;
   late TextEditingController passwordTextController;
 
@@ -144,39 +143,33 @@ class SignInController extends GetxController {
   void onInit() {
     idTextController = TextEditingController();
     passwordTextController = TextEditingController();
+    print("SignInController 초기화됨");
     super.onInit();
   }
 
   @override
   void onClose() {
-    idTextController.dispose();
-    passwordTextController.dispose();
+    // TextEditingController 안전하게 dispose
+    if (idTextController.hasListeners) idTextController.dispose();
+    if (passwordTextController.hasListeners) passwordTextController.dispose();
+    print("SignInController disposed");
     super.onClose();
   }
 
-  void verifyLogin() async {
-    var id = idTextController.value.text;
-    var password = passwordTextController.value.text;
+  Future<void> verifyLogin() async {
+    var id = idTextController.text;
+    var password = passwordTextController.text;
+    print("로그인 시도 - 학번: $id, 비밀번호: $password");
 
-    /*
-    if (id == "12345678" && password == "12345678") {
-      await AppPreferences().prefs?.setBool(AppPrefsKeys.isLoginUser, true) ??
-          false;
-      Get.offNamed(AppRouter.home);
-      return;
-    }
-
-    Fluttertoast.showToast(msg: "학번 혹은 비밀번호가 일치하지 않습니다.");
-    */
-    print("학번: $id, 비밀번호: $password"); // 입력 값 확인용
-
-    // 로그인 API 호출 --- 임시 작성 코드, 로그인 성공 후 main 파일로 넘어가지 않는 문제 있음
     bool isLoggedIn = await apiService.isLoginUser(id, password);
     if (isLoggedIn) {
       await AppPreferences().prefs?.setBool(AppPrefsKeys.isLoginUser, true);
-      Get.offNamed(AppRouter.home);
+      // 홈 화면으로 전환
+      Future.delayed(Duration(milliseconds: 200), () {
+        Get.offAllNamed(AppRouter.home);
+      });
     } else {
-      Fluttertoast.showToast(msg: "학번 혹은 비밀번호가 일치하지 않습니다.");
+      Fluttertoast.showToast(msg: "학번 또는 비밀번호가 일치하지 않습니다.");
     }
   }
 }

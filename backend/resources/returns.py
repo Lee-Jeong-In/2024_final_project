@@ -3,15 +3,11 @@ from flask_restful import Resource, Api
 from .database import get_db_connection
 from datetime import datetime
 
-
 # Blueprint 생성
 returns_bp = Blueprint('returns', __name__)
-api = Api(returns_bp)  # Blueprint에 Api 객체 연결
-
+api = Api(returns_bp)
 
 class Returns(Resource):
-
-    # 10.31 get method 추가
     def get(self, user_id=None):
         conn = get_db_connection()
         cursor = conn.cursor()
@@ -30,6 +26,7 @@ class Returns(Resource):
 
                 if not returns:
                     return {"message": "No returns found for this user"}, 404
+
                 # 반납 정보 구성
                 returns_list = [
                     {
@@ -64,51 +61,56 @@ class Returns(Resource):
 
     def post(self):
         data = request.json
-        
+
         # 데이터 유효성 검사
         if not data or 'rental_id' not in data:
             return {'error': 'Missing required fields'}, 400
-        
+
         rental_id = data.get('rental_id')
-        return_date = datetime.strptime(data.get('return_date'), '%Y-%m-%dT%H:%M:%S')
-        photo_url = data.get('photo_url')
-        status = data.get('status')
-        conditions = data.get('conditions')  # 필드명 변경
+        return_date = data.get('return_date', datetime.now().strftime('%Y-%m-%dT%H:%M:%S'))
+        photo_url = data.get('photo_url', None)
+        status = data.get('status', 'returned')  # 기본값 설정
+        conditions = data.get('conditions', 'good')  # 기본값 설정
 
         # DB 연결
         conn = get_db_connection()
         cursor = conn.cursor()
 
-        cursor.execute('SELECT rental_id FROM rental WHERE rental_id = %s', (rental_id,))
-        if cursor.fetchone() is None:
-            return {'error': 'Invalid rental_id: no such rental record'}, 400
-
         try:
+            # `rental_id`가 유효한지 확인
+            cursor.execute('SELECT rental_id FROM rental WHERE rental_id = %s', (rental_id,))
+            if cursor.fetchone() is None:
+                return {'error': 'Invalid rental_id: no such rental record'}, 400
+
             # 반납 기록 추가
             cursor.execute(
-                'INSERT INTO return_device (rental_id, return_date, photo_url, status, conditions) VALUES (%s, %s, %s, %s, %s)',
+                '''
+                INSERT INTO return_device (rental_id, return_date, photo_url, status, conditions)
+                VALUES (%s, %s, %s, %s, %s)
+                ''',
                 (rental_id, return_date, photo_url, status, conditions)
             )
 
-            # rental_id로 device_id 조회
+            # `device_id` 조회
             cursor.execute('SELECT device_id FROM rental WHERE rental_id = %s', (rental_id,))
             device = cursor.fetchone()
-            
+
             if not device:
                 return {'error': 'Device not found for this rental ID'}, 404
-            
+
             device_id = device[0]
 
-            # 11.01 기기의 availability 상태를 true로 업데이트
-            cursor.execute('UPDATE device SET availability = %s WHERE device_id = %s', (True, device_id))
+            # 기기의 `availability` 상태를 `1`로 업데이트
+            cursor.execute('UPDATE device SET availability = 1 WHERE device_id = %s', (device_id,))
+
             conn.commit()
 
-            return {'message': '반납 기록이 추가되고 기기의 상태가 변경되었습니다!'}, 201
+            return {'message': 'Return processed successfully, and device availability updated.'}, 201
 
         except Exception as e:
             conn.rollback()
             print(f"Error: {e}")
-            return {'error': 'Failed to process the return'}, 500
+            return {'error': str(e)}, 500
 
         finally:
             cursor.close()
